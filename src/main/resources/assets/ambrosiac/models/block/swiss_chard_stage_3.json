@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "ambrosiac:block/swiss_chard_stage_3"
+  }
+
+}
