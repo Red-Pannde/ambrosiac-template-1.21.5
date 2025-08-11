@@ -111,10 +111,12 @@ public class Swiss_ChardBlock extends CropBlock {
     protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
         if (isMature(state)) {
-            super.randomTick(state, world, pos, random);
             fillCauldronWithSnow(world, pos);
             freezeWaterIntoPackedIce(world, pos);
         }
+    }
+    protected boolean hasRandomTicks(BlockState state) {
+        return true;
     }
 }
 
