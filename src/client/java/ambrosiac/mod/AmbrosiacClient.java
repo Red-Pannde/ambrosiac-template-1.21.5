@@ -12,6 +12,7 @@ public class AmbrosiacClient implements ClientModInitializer {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DAHLIA, RenderLayer.getCutoutMipped());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SWISS_CHARD, RenderLayer.getCutoutMipped());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PEACE_LILY, RenderLayer.getCutoutMipped());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ALCHEMISTS_CAULDRON, RenderLayer.getTranslucent());
 
 	}

@@ -3,6 +3,8 @@ package ambrosiac.mod.blocks;
 import ambrosiac.mod.items.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.WaterFluid;
@@ -22,6 +24,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.event.GameEvent;
 
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 
 public class Swiss_ChardBlock extends CropBlock {
@@ -70,39 +74,47 @@ public class Swiss_ChardBlock extends CropBlock {
     }
 
     public void fillCauldronWithSnow(World world, BlockPos pos) {
-        int distance = 5;
-        Biome.Precipitation precipitation = Biome.Precipitation.SNOW;
+        surroundingCheck(world, pos, 4, 0.3f, 10, (newPos, state) ->{
+            if (state.getBlock() instanceof AbstractCauldronBlock cauldronBlock) {
 
-        for (int i = -distance; i <= distance; i++) {
-            for (int j = -distance; j <= distance; j++) {
-                for (int k = -distance; k <= distance; k++) {
-                        BlockPos newPos = pos.add(i,j,k);
-                        BlockState state = world.getBlockState(newPos);
-                        if (state.getBlock() instanceof AbstractCauldronBlock cauldronBlock) {
-                            if (world.getRandom().nextFloat() <= 0.3f) {
-                                cauldronBlock.precipitationTick(state, world, newPos, precipitation);
-                            }
-                        }
-
-                }
+                cauldronBlock.precipitationTick(state, world, newPos, Biome.Precipitation.SNOW);
+                return true;
             }
-        }
+            return false;
+
+        });
+
     }
+
     public void freezeWaterIntoPackedIce(World world, BlockPos pos) {
-        int distance = 2;
-        for (int i = -distance; i <= distance; i++) {
-            for (int j = -distance; j <= distance; j++) {
-                for (int k = -distance; k <= distance; k++) {
-                    BlockPos newPos = pos.add(i,j,k);
-                    BlockState state = world.getBlockState(newPos);
-                    if (state.getBlock().equals(Blocks.WATER)) {
-                        if (world.getRandom().nextFloat() <= 0.1f) {
-                            if (!world.isClient) {
-                                world.setBlockState(newPos, Blocks.PACKED_ICE.getDefaultState());
+        surroundingCheck(world, pos, 2, 0.1f, 10, (newPos, state)-> {
+            if (state.getBlock().equals(Blocks.WATER)) {
+
+                world.setBlockState(newPos, Blocks.PACKED_ICE.getDefaultState());
+                return true;
+            }
+            return false;
+        });
+
+    }
+    public void surroundingCheck(World world, BlockPos pos, int distance, float probability, int max_Operations, BiFunction<BlockPos, BlockState, Boolean> supplier) {
+        int operations = 0;
+        if (world.getRandom().nextFloat() <= probability) {
+            while (operations <= max_Operations) {
+
+                for (int i = -distance; i <= distance; i++) {
+                    for (int j = -distance; j <= distance; j++) {
+                        for (int k = -distance; k <= distance; k++) {
+
+                            BlockPos newPos = pos.add(i, j, k);
+                            BlockState state = world.getBlockState(newPos);
+                            if (supplier.apply(newPos, state)) {
+                                operations++;
                             }
                         }
                     }
                 }
+                operations++;
             }
         }
     }
@@ -115,6 +127,7 @@ public class Swiss_ChardBlock extends CropBlock {
             freezeWaterIntoPackedIce(world, pos);
         }
     }
+
     protected boolean hasRandomTicks(BlockState state) {
         return true;
     }

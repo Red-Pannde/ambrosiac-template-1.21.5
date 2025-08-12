@@ -66,6 +66,12 @@ public class ModBlocks {
             AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque(),
             true
     );
+    public static final Block PEACE_LILY = register(
+            "peace_lily",
+            Peace_LilyBlock::new,
+            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque(),
+            true
+    );
 
 
     public static void initialize() {
@@ -80,6 +86,9 @@ public class ModBlocks {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
             itemGroup.add(ModBlocks.SWISS_CHARD.asItem());
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register((itemGroup) -> {
+            itemGroup.add(ModBlocks.PEACE_LILY.asItem());
         });
 
     }
