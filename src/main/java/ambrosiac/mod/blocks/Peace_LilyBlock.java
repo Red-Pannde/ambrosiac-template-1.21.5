@@ -37,7 +37,7 @@ public class Peace_LilyBlock extends Block {
         }
     }
     public void createMud(World world, BlockPos pos) {
-surroundingCheck(world, pos, 3, 0.5f, 10, (newPos, state) -> {
+surroundingCheck(world, pos, 3, 0.3f, 10, (newPos, state) -> {
     if (state.getBlock().equals(Blocks.DIRT)) {
         world.setBlockState(newPos, Blocks.MUD.getDefaultState());
                 return true;
