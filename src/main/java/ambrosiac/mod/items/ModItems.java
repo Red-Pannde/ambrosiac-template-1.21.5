@@ -5,12 +5,17 @@ import ambrosiac.mod.blocks.ModBlocks;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
@@ -49,7 +54,6 @@ import java.util.function.Function;
                     .register((itemGroup) -> itemGroup.add(ModItems.ATTRIBUTE_WAND));
             ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
                     .register((itemGroup) -> itemGroup.add(ModBlocks.DAHLIA));
-
 
             // Add the suspicious substance to the composting registry with a 30% chance of increasing the composter's level.
             CompostingChanceRegistry.INSTANCE.add(ModBlocks.DAHLIA, 0.3f);

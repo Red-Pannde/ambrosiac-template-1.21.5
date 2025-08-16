@@ -1,7 +1,16 @@
 {
   "item.ambrosiac.attribute_wand": "Attribute Wand",
+
   "item.ambrosiac.dahlia": "Dahlia",
   "block.ambrosiac.dahlia" : "Dahlia",
+
   "block.ambrosiac.alchemists_cauldron" : "Alchemist's Cauldron",
-  "item.ambrosiac.alchemists_cauldron" : "Alchemist's Cauldron"
+  "item.ambrosiac.alchemists_cauldron" : "Alchemist's Cauldron",
+
+  "block.ambrosiac.peace_lily" : "Peace Lily",
+  "item.ambrosiac.peace_lily" : "Peace Lily",
+
+  "item.minecraft.potion.effect.dolphins_grace_potion" : "Potion of the Dolphin's Grace",
+  "item.minecraft.splash_potion.effect.dolphins_grace_potion" : "Splash Potion of the Dolphin's Grace",
+  "item.minecraft.lingering_potion.effect.dolphins_grace_potion" : "Lingering Potion of the Dolphin's Grace"
 }

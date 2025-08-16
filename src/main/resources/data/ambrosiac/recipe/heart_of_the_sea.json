@@ -1,0 +1,14 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "category" : "misc",
+  "ingredients" : [
+    "minecraft:diamond",
+    "ambrosiac:peace_lily"
+  ],
+  "result" : {
+  "count" : 1,
+    "id" : "minecraft:heart_of_the_sea"
+  }
+
+
+}

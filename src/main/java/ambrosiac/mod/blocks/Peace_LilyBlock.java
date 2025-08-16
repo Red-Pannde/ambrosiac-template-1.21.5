@@ -1,16 +1,24 @@
 package ambrosiac.mod.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.function.BiFunction;
 
-public class Peace_LilyBlock extends Block {
+public class Peace_LilyBlock extends Block implements FluidDrainable {
     public Peace_LilyBlock(Settings settings) {
         super(settings);
     }
@@ -38,7 +46,7 @@ public class Peace_LilyBlock extends Block {
     }
     public void createMud(World world, BlockPos pos) {
 surroundingCheck(world, pos, 3, 0.3f, 10, (newPos, state) -> {
-    if (state.getBlock().equals(Blocks.DIRT)) {
+    if (state.isOf(Blocks.DIRT) && world.getBlockState(newPos.up()).isAir()) {
         world.setBlockState(newPos, Blocks.MUD.getDefaultState());
                 return true;
     }
@@ -46,9 +54,28 @@ surroundingCheck(world, pos, 3, 0.3f, 10, (newPos, state) -> {
 });
     }
 
-    @Override
     protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        super.randomTick(state, world, pos, random);
+       super.randomTick(state, world, pos, random);
         createMud(world, pos);
+
+    }
+
+    @Override
+    protected boolean hasRandomTicks(BlockState state) {
+        return true;
+
+    }
+
+
+    @Override
+    public ItemStack tryDrainFluid(@Nullable LivingEntity drainer, WorldAccess world, BlockPos pos, BlockState state) {
+        return new ItemStack(Items.WATER_BUCKET);
+
+    }
+
+    @Override
+    public Optional<SoundEvent> getBucketFillSound() {
+            return Fluids.WATER.getBucketFillSound();
+
     }
 }
