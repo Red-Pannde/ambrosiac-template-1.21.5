@@ -8,7 +8,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
 public class Alchemists_CauldronBlockEntity extends BlockEntity implements ImplementedInventory{
-    public Alchemists_CauldronBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public Alchemists_CauldronBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALCHEMISTS_CAULDRON_BLOCK_ENTITY, pos, state);
     }
 
