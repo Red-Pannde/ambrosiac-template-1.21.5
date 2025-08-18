@@ -9,14 +9,41 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
 public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     private final Inventory inventory;
 
+    public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, BlockPos pos) {
+        super(ModScreenHandler.ALCHEMISTS_CAULDRON_SCREEN_HANDLER, syncId);
+        checkSize(inventory, 9);
+        this.inventory = inventory;
+        // some inventories do custom logic when a player opens it.
+        inventory.onOpen(playerInventory.player);
 
-    public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos), new ArrayPropertyDelegate(4));
+        // This will place the slot in the correct locations for a 3x3 Grid. The slots exist on both server and client!
+        // This will not render the background of the slots however, this is the Screens job
+        int m;
+        int l;
+        // Our inventory
+        for (m = 0; m < 3; ++m) {
+            for (l = 0; l < 3; ++l) {
+                this.addSlot(new Slot(inventory, l + m * 3, 62 + l * 18, 17 + m * 18));
+            }
+        }
+        // The player inventory
+        for (m = 0; m < 3; ++m) {
+            for (l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+            }
+        }
+        // The player Hotbar
+        for (m = 0; m < 9; ++m) {
+            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+        }
+
+
     }
 
 

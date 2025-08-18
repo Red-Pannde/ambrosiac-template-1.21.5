@@ -40,7 +40,7 @@ public class AlchemistsCauldronBlockEntity extends BlockEntity implements Implem
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new AlchemistsCauldronScreenHandler(syncId, playerInventory, this.pos);
+        return new AlchemistsCauldronScreenHandler(syncId, playerInventory, this, this.pos);
     }
     @Override
     public void onBlockReplaced(BlockPos pos, BlockState oldState) {

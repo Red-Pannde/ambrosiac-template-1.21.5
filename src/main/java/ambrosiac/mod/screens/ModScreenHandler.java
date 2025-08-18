@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 public class ModScreenHandler implements ModInitializer {
-    public static final ScreenHandlerType<AlchemistsCauldronScreenHandler> ALCHEMISTS_CAULDRON_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER, Identifier.of(Ambrosiac.MOD_ID, "alchemists_cauldron_screen_handler"), new ExtendedScreenHandlerType<>(AlchemistsCauldronScreenHandler::new, FeatureSet.empty()));
+    public static final ScreenHandlerType<AlchemistsCauldronScreenHandler> ALCHEMISTS_CAULDRON_SCREEN_HANDLER = Registry.register(Registries.SCREEN_HANDLER, Identifier.of(Ambrosiac.MOD_ID, "alchemists_cauldron_screen_handler"), new ExtendedScreenHandlerType<>(AlchemistsCauldronScreenHandler::new, BlockPos.PACKET_CODEC));
 
 
     @Override
