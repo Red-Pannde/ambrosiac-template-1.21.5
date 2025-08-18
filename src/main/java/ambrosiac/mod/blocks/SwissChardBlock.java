@@ -1,15 +1,10 @@
 package ambrosiac.mod.blocks;
 
-import ambrosiac.mod.items.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
@@ -21,15 +16,10 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.event.GameEvent;
 
-import java.util.Optional;
-import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.logging.Level;
 
-public class Swiss_ChardBlock extends CropBlock {
+public class SwissChardBlock extends CropBlock {
     public static final MapCodec<BeetrootsBlock> CODEC = createCodec(BeetrootsBlock::new);
     public static IntProperty SWISS_CHARD_MAX_AGE = null;
     public static final IntProperty AGE;
@@ -42,7 +32,7 @@ public class Swiss_ChardBlock extends CropBlock {
 
     }
 
-    public Swiss_ChardBlock(Settings settings) {
+    public SwissChardBlock(Settings settings) {
         super(settings);
     }
 

@@ -1,9 +1,7 @@
 package ambrosiac.mod.blocks;
 
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,13 +11,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.function.BiFunction;
 
-public class Peace_LilyBlock extends Block implements FluidDrainable {
-    public Peace_LilyBlock(Settings settings) {
+public class PeaceLilyBlock extends Block implements FluidDrainable, Fertilizable {
+    public PeaceLilyBlock(Settings settings) {
         super(settings);
     }
 
@@ -77,5 +76,20 @@ surroundingCheck(world, pos, 3, 0.3f, 10, (newPos, state) -> {
     public Optional<SoundEvent> getBucketFillSound() {
             return Fluids.WATER.getBucketFillSound();
 
+    }
+
+    @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+        dropStack(world, pos, new ItemStack(this));
     }
 }

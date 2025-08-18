@@ -53,19 +53,19 @@ public class ModBlocks {
     );
     public static final Block ALCHEMISTS_CAULDRON = register(
             "alchemists_cauldron",
-            Alchemists_CauldronBlock::new,
+            AlchemistsCauldronBlock::new,
             AbstractBlock.Settings.create().sounds(BlockSoundGroup.IRON).dynamicBounds(),
             true
     );
     public static final Block SWISS_CHARD = register(
             "swiss_chard",
-            Swiss_ChardBlock::new,
+            SwissChardBlock::new,
             AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque(),
             true
     );
     public static final Block PEACE_LILY = register(
             "peace_lily",
-            Peace_LilyBlock::new,
+            PeaceLilyBlock::new,
             AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
             true
     );

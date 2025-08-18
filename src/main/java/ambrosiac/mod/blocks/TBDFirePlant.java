@@ -1,6 +1,6 @@
 package ambrosiac.mod.blocks;
 
-public class TBD_Fire_Plant {
+public class TBDFirePlant {
 
     // fuel
     // converting blocks: cobblestone into lava, logs into charcoal blocks, etc

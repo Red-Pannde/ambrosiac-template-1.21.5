@@ -2,8 +2,11 @@ package ambrosiac.mod;
 
 import ambrosiac.mod.blocks.Dahlia;
 import ambrosiac.mod.blocks.ModBlocks;
+import ambrosiac.mod.screens.AlchemistsCauldronScreenHandler;
+import ambrosiac.mod.screens.ModScreenHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 
 public class AmbrosiacClient implements ClientModInitializer {

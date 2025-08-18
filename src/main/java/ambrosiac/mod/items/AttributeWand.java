@@ -9,8 +9,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Attribute_Wand extends Item {
-    public Attribute_Wand(Settings settings) {
+public class AttributeWand extends Item {
+    public AttributeWand(Settings settings) {
         super(settings);
 
     }

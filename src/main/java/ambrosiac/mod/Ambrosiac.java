@@ -3,7 +3,6 @@ package ambrosiac.mod;
 
 import ambrosiac.mod.blocks.ModBlocks;
 import ambrosiac.mod.items.ModItems;
-import ambrosiac.mod.items.Swiss_Chard;
 import ambrosiac.mod.potion.ModPotions;
 import net.fabricmc.api.ModInitializer;
 
