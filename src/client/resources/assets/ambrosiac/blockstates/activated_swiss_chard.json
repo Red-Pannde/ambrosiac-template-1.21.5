@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ambrosiac:block/swiss_chard_stage_1"
+    },
+    "age=1": {
+      "model": "ambrosiac:block/swiss_chard_stage_2"
+    },
+    "age=2": {
+      "model": "ambrosiac:block/swiss_chard_stage_3"
+    }
+  }
+}

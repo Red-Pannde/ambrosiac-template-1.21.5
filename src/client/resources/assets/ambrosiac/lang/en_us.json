@@ -3,12 +3,21 @@
 
   "item.ambrosiac.dahlia": "Dahlia",
   "block.ambrosiac.dahlia" : "Dahlia",
+  "item.ambrosiac.activated_dahlia": "Activated Dahlia",
+  "block.ambrosiac.activated_dahlia" : "Activated Dahlia",
 
   "block.ambrosiac.alchemists_cauldron" : "Alchemist's Cauldron",
   "item.ambrosiac.alchemists_cauldron" : "Alchemist's Cauldron",
 
   "block.ambrosiac.peace_lily" : "Peace Lily",
   "item.ambrosiac.peace_lily" : "Peace Lily",
+  "block.ambrosiac.activated_peace_lily" : "Activated Peace Lily",
+  "item.ambrosiac.activated_peace_lily" : "Activated Peace Lily",
+
+  "block.ambrosiac.swiss_chard" : "Swiss Chard",
+  "item.ambrosiac.swiss_chard_seeds" : "Swiss Chard Seeds",
+  "block.ambrosiac.activated_swiss_chard" : "Activated Swiss Chard",
+  "item.ambrosiac.activated_swiss_chard_seeds" : "Activated Swiss Chard Seeds",
 
   "item.minecraft.potion.effect.dolphins_grace_potion" : "Potion of the Dolphin's Grace",
   "item.minecraft.splash_potion.effect.dolphins_grace_potion" : "Splash Potion of the Dolphin's Grace",

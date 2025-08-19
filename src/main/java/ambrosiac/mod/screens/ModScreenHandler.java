@@ -19,4 +19,7 @@ public class ModScreenHandler implements ModInitializer {
     public void onInitialize() {
 
     }
+    public static void initialize() {
+
+    }
 }

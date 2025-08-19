@@ -14,7 +14,9 @@ import net.minecraft.util.math.BlockPos;
 
 public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-
+    public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
+        this(syncId, playerInventory, new SimpleInventory(9), pos);
+    }
     public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, BlockPos pos) {
         super(ModScreenHandler.ALCHEMISTS_CAULDRON_SCREEN_HANDLER, syncId);
         checkSize(inventory, 9);

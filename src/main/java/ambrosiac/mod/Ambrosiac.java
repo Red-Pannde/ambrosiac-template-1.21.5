@@ -4,8 +4,10 @@ package ambrosiac.mod;
 import ambrosiac.mod.blocks.ModBlocks;
 import ambrosiac.mod.items.ModItems;
 import ambrosiac.mod.potion.ModPotions;
+import ambrosiac.mod.screens.ModScreenHandler;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.item.ItemGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,7 @@ public class Ambrosiac implements ModInitializer {
 		ModItems.initialize();
 		ModBlocks.initialize();
 		ModPotions.registerPotions();
+		ModScreenHandler.initialize();
 		LOGGER.info("Hello Fabric world!");
 
     }
