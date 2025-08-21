@@ -1,13 +1,10 @@
 package ambrosiac.mod.screens;
 
-import ambrosiac.mod.Ambrosiac;
-import ambrosiac.mod.blocks.entities.AlchemistsCauldronBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
@@ -15,11 +12,11 @@ import net.minecraft.util.math.BlockPos;
 public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, new SimpleInventory(9), pos);
+        this(syncId, playerInventory, new SimpleInventory(4), pos);
     }
     public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, BlockPos pos) {
         super(ModScreenHandler.ALCHEMISTS_CAULDRON_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 9);
+        checkSize(inventory, 4);
         this.inventory = inventory;
         // some inventories do custom logic when a player opens it.
         inventory.onOpen(playerInventory.player);
@@ -29,9 +26,9 @@ public class AlchemistsCauldronScreenHandler extends ScreenHandler {
         int m;
         int l;
         // Our inventory
-        for (m = 0; m < 3; ++m) {
-            for (l = 0; l < 3; ++l) {
-                this.addSlot(new Slot(inventory, l + m * 3, 62 + l * 18, 17 + m * 18));
+        for (m = 0; m < 2; ++m) {
+            for (l = 0; l < 2; ++l) {
+                this.addSlot(new Slot(inventory, l + m * 2, 62 + l * 18, 17 + m * 18));
             }
         }
         // The player inventory
@@ -56,7 +53,7 @@ public class AlchemistsCauldronScreenHandler extends ScreenHandler {
 
         @Override
         public boolean canUse (PlayerEntity player){
-            return false;
+            return true;
         }
 
 

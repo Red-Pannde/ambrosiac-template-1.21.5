@@ -16,10 +16,15 @@
 
   "block.ambrosiac.swiss_chard" : "Swiss Chard",
   "item.ambrosiac.swiss_chard_seeds" : "Swiss Chard Seeds",
+  "item.ambrosiac.swiss_chard_leaf" : "Swiss Chard Leaf",
+
   "block.ambrosiac.activated_swiss_chard" : "Activated Swiss Chard",
   "item.ambrosiac.activated_swiss_chard_seeds" : "Activated Swiss Chard Seeds",
+  "item.ambrosiac.activated_swiss_chard_leaf" : "Activated Swiss Chard Leaf",
 
   "item.minecraft.potion.effect.dolphins_grace_potion" : "Potion of the Dolphin's Grace",
   "item.minecraft.splash_potion.effect.dolphins_grace_potion" : "Splash Potion of the Dolphin's Grace",
-  "item.minecraft.lingering_potion.effect.dolphins_grace_potion" : "Lingering Potion of the Dolphin's Grace"
+  "item.minecraft.lingering_potion.effect.dolphins_grace_potion" : "Lingering Potion of the Dolphin's Grace",
+
+  "itemGroup.ambrosiac" : "Ambrosiac"
 }

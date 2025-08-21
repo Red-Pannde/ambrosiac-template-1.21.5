@@ -1,15 +1,9 @@
 package ambrosiac.mod.items;
 
 import ambrosiac.mod.Ambrosiac;
-import ambrosiac.mod.blocks.Dahlia;
 import ambrosiac.mod.blocks.ModBlocks;
-import ambrosiac.mod.blocks.activated.ActivatedPeaceLilyBlock;
-import ambrosiac.mod.blocks.activated.ActivatedSwissChardBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -52,46 +46,32 @@ public class ModItems {
                     new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
     public static final Item SWISS_CHARD_SEEDS = register
             ("swiss_chard_seeds", settings -> new BlockItem(ModBlocks.SWISS_CHARD, settings),
-                    new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+                    new Item.Settings());
+
     public static final Item ACTIVATED_SWISS_CHARD_LEAF = register
             ("activated_swiss_chard_leaf", Item::new, new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
     public static final Item SWISS_CHARD_LEAF = register("swiss_chard_leaf", Item::new, new Item.Settings());
 
     public static void initialize() {
+        Registry.register(Registries.ITEM_GROUP, Identifier.of(Ambrosiac.MOD_ID, "item_group"), AMBROSIAC_ITEM_GROUP);
         // Get the event for modifying entries in the ingredients group.
 // And register an event handler that adds our suspicious item to the ingredients group.
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.add(ModItems.ATTRIBUTE_WAND));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModBlocks.DAHLIA));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModItems.ACTIVATED_PEACE_LILY));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModItems.ACTIVATED_DAHLIA));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModItems.ACTIVATED_SWISS_CHARD_SEEDS));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModItems.SWISS_CHARD_SEEDS));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL)
-                .register((itemGroup) -> itemGroup.add(ModItems.SWISS_CHARD_LEAF));
         // Add the suspicious substance to the composting registry with a 30% chance of increasing the composter's level.
         CompostingChanceRegistry.INSTANCE.add(ModBlocks.DAHLIA, 0.3f);
     }
-    public static final ItemGroup AMBROSIAC_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP, Identifier.of(Ambrosiac.MOD_ID, "item_group"), FabricItemGroup.builder()
+    public static final ItemGroup AMBROSIAC_ITEM_GROUP =  FabricItemGroup.builder()
             .icon(() -> new ItemStack(SWISS_CHARD_LEAF))
             .displayName(Text.translatableWithFallback("itemGroup.ambrosiac", "Ambrosiac"))
             .entries((displayContext, entries) -> {
                 entries.add(ATTRIBUTE_WAND);
                 entries.add(ModBlocks.DAHLIA.asItem());
-                entries.add(ModBlocks.PEACE_LILY.asItem());
                 entries.add(ACTIVATED_DAHLIA);
+                entries.add(ModBlocks.PEACE_LILY.asItem());
                 entries.add(ACTIVATED_PEACE_LILY);
-                entries.add(ACTIVATED_SWISS_CHARD_LEAF);
-                entries.add(ACTIVATED_SWISS_CHARD_SEEDS);
                 entries.add(SWISS_CHARD_LEAF);
+                entries.add(ACTIVATED_SWISS_CHARD_LEAF);
                 entries.add(SWISS_CHARD_SEEDS);
-
+                entries.add(ACTIVATED_SWISS_CHARD_SEEDS);
             })
-            .build()
-    );
+            .build();
 }

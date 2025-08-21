@@ -23,5 +23,8 @@ public class ModBlockEntities {
         Identifier id = Identifier.of(Ambrosiac.MOD_ID, name);
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.<T>create(entityFactory, blocks).build());
     }
+    public static void initialize() {
+
+    }
 
 }
