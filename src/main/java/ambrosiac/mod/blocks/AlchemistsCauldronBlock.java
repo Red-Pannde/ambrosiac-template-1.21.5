@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class AlchemistsCauldronBlock extends BlockWithEntity {
+    public static final MapCodec<AlchemistsCauldronBlock> CODEC = createCodec(AlchemistsCauldronBlock::new);
 
     public AlchemistsCauldronBlock(Settings settings) {
         super(settings);
@@ -20,18 +21,20 @@ public class AlchemistsCauldronBlock extends BlockWithEntity {
 
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return createCodec(AlchemistsCauldronBlock::new);
+        return CODEC;
     }
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new AlchemistsCauldronBlockEntity(pos, state);
     }
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         // With inheriting from BlockWithEntity this defaults to INVISIBLE, so we need to change that!
         return BlockRenderType.MODEL;
     }
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
@@ -46,6 +49,7 @@ public class AlchemistsCauldronBlock extends BlockWithEntity {
         }
         return ActionResult.SUCCESS;
     }
+
     @Override
     public boolean hasComparatorOutput(BlockState state) {
         return true;
