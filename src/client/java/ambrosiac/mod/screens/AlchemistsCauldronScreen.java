@@ -15,6 +15,7 @@ public class AlchemistsCauldronScreen extends HandledScreen<AlchemistsCauldronSc
     public AlchemistsCauldronScreen(AlchemistsCauldronScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
+
     private static final Identifier TEXTURE = Identifier.of(Ambrosiac.MOD_ID, "screens/alchemists_cauldron_gui.png");
 
     @Override
@@ -23,10 +24,13 @@ public class AlchemistsCauldronScreen extends HandledScreen<AlchemistsCauldronSc
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
     }
+
     @Override
     public void init() {
         super.init();
-        AlchemistsWandWidget alchemistsWandWidget = new AlchemistsWandWidget(303, 103, 18, 18, Text.translatable("bwaa :3"));
+        int i = (this.width - this.backgroundWidth) / 2;
+        int j = (this.height - this.backgroundHeight) / 2;
+        AlchemistsWandWidget alchemistsWandWidget = new AlchemistsWandWidget(i + 151, j + 60, 18, 18, Text.translatable("bwaa :3"));
         addDrawableChild(alchemistsWandWidget);
     }
 
@@ -37,8 +41,16 @@ public class AlchemistsCauldronScreen extends HandledScreen<AlchemistsCauldronSc
         super.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }
+
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        this.client.interactionManager.clickButton((this.handler).syncId, 0);
+        int i = (this.width - this.backgroundWidth) / 2;
+        int j = (this.height - this.backgroundHeight) / 2;
+        double buttonXpos = i + 151;
+        double buttonYpos = j + 58;
+        if (mouseX >= buttonXpos && mouseX <= buttonXpos + 18 && mouseY >= buttonYpos && mouseY <= buttonYpos + 18) {
+            this.client.interactionManager.clickButton((this.handler).syncId, 0);
+
+        }
         return super.mouseClicked(mouseX, mouseY, button);
     }
 }

@@ -17,4 +17,8 @@ public class ModRecipes {
             return "alchemists_cauldron_infusing";
         }
     });
+
+    public static void registerRecipes() {
+    }
 }
+

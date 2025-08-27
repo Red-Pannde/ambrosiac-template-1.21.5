@@ -1,0 +1,11 @@
+{
+  "type" : "ambrosiac:alchemists_cauldron_infusing",
+  "ingredients" : [
+    "minecraft:kelp",
+    "minecraft:bone_meal",
+    "minecraft:amethyst_shard"
+  ],
+  "result" : {
+    "id" : "ambrosiac:activated_swiss_chard_leaf"
+  }
+}

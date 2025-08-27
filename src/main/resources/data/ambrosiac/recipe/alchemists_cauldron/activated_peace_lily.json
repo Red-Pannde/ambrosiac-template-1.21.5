@@ -1,0 +1,14 @@
+{
+  "type": "ambrosiac:alchemists_cauldron_infusing",
+  "ingredients": [
+    "minecraft:nautilus_shell",
+    "minecraft:sugar",
+    [
+      "minecraft:jungle_sapling",
+      "minecraft:mangrove_propagule"
+    ]
+  ],
+  "result": {
+    "id": "ambrosiac:activated_peace_lily"
+  }
+}

@@ -1,30 +1,34 @@
 package ambrosiac.mod.screens;
 
 import ambrosiac.mod.blocks.entities.AlchemistsCauldronBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.CrafterOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.dedicated.ServerPropertiesHandler;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-    private ServerPropertiesHandler minecraft;
-    private BlockPos blockPos;
+    private final BlockPos blockPos;
+    private final BlockEntity alchemistsCauldronBlockEntity;
+
+
 
     public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, new SimpleInventory(4), pos);
+        this(syncId, playerInventory, pos, playerInventory.player.getWorld().getBlockEntity(pos));
     }
 
-    public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, BlockPos pos) {
+    public AlchemistsCauldronScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos, BlockEntity alchemistsCauldronBlockEntity) {
         super(ModScreenHandler.ALCHEMISTS_CAULDRON_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 4);
-        this.inventory = inventory;
+        this.inventory = (Inventory) alchemistsCauldronBlockEntity;
         this.blockPos = pos;
+        this.alchemistsCauldronBlockEntity = alchemistsCauldronBlockEntity;
         // some inventories do custom logic when a player opens it.
         inventory.onOpen(playerInventory.player);
 
@@ -43,7 +47,11 @@ public class AlchemistsCauldronScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(inventory, 1, 109, 39));
         this.addSlot(new Slot(inventory, 2, 64, 61));
 
-        this.addSlot(new Slot(inventory, 3, 80, 35));
+        this.addSlot(new Slot(inventory, 3, 80, 35) {
+            public boolean canInsert (ItemStack stack){
+                return false;
+            }
+        });
         // The player inventory
         for (m = 0; m < 3; ++m) {
             for (l = 0; l < 9; ++l) {
@@ -88,5 +96,19 @@ public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
     }
-}
 
+    public boolean onButtonClick(PlayerEntity player, int id) {
+        int INFUSING_BUTTON_ID = 0;
+        if (id == INFUSING_BUTTON_ID) {
+            World world1 = player.getWorld();
+            AlchemistsCauldronBlockEntity blockEntity = (AlchemistsCauldronBlockEntity) world1.getBlockEntity(blockPos);
+            blockEntity.tryCraft();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void dropInventory(PlayerEntity player, Inventory inventory) {
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "category" : "misc",
+  "ingredients" : [
+    "ambrosiac:activated_swiss_chard_leaf"
+  ],
+  "result" : {
+    "count" : 3,
+    "id" : "ambrosiac:activated_swiss_chard_seeds"
+  }
+
+
+}

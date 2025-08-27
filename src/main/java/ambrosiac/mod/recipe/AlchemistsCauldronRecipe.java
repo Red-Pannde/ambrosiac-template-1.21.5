@@ -60,6 +60,13 @@ public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipe
         }
         return this.ingredientPlacement;
     }
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public ItemStack getResult() {
+        return result;
+    }
 
     @Override
     public RecipeBookCategory getRecipeBookCategory() {

@@ -5,6 +5,7 @@ import ambrosiac.mod.blocks.ModBlocks;
 import ambrosiac.mod.blocks.entities.ModBlockEntities;
 import ambrosiac.mod.items.ModItems;
 import ambrosiac.mod.potion.ModPotions;
+import ambrosiac.mod.recipe.ModRecipes;
 import ambrosiac.mod.screens.ModScreenHandler;
 import net.fabricmc.api.ModInitializer;
 
@@ -27,6 +28,7 @@ public class Ambrosiac implements ModInitializer {
 		ModItems.initialize();
 		ModBlocks.initialize();
 		ModPotions.registerPotions();
+		ModRecipes.registerRecipes();
 		ModScreenHandler.initialize();
 		ModBlockEntities.initialize();
 		LOGGER.info("Hello Fabric world!");

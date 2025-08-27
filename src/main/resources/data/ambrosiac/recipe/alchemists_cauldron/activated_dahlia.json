@@ -1,0 +1,15 @@
+{
+  "type": "ambrosiac:alchemists_cauldron_infusing",
+  "ingredients": [
+    "minecraft:poppy",
+    "minecraft:nether_wart",
+    [
+      "minecraft:bone",
+      "minecraft:gunpowder",
+      "minecraft:spider_eye"
+    ]
+  ],
+  "result": {
+    "id": "ambrosiac:activated_dahlia"
+  }
+}
