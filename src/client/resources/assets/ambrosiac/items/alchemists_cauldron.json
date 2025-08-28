@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "ambrosiac:item/alchemists_cauldron"
+    "model": "ambrosiac:block/alchemists_cauldron"
   }
 }

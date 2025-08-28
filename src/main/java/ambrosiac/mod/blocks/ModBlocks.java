@@ -76,7 +76,7 @@ public class ModBlocks {
             true
     );
     public static final Block ACTIVATED_PEACE_LILY = register(
-            "activated_peace_lily.json",
+            "activated_peace_lily",
             ActivatedPeaceLilyBlock::new,
             AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
             false

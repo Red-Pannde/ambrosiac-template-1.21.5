@@ -1,20 +1,41 @@
+
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
-      "rolls": 1,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ambrosiac:swiss_chard"
+          "name": "ambrosiac:swiss_chard_seeds"
         }
       ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "block": "ambrosiac:swiss_chard",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "2"
+          }
         }
-      ]
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ambrosiac:swiss_chard_seeds"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
-  "random_sequence" : "ambrosiac:blocks/swiss_chard"
+  "random_sequence": "ambrosiac:items/swiss_chard_seeds"
 }

@@ -4,13 +4,24 @@ import ambrosiac.mod.blocks.entities.AlchemistsCauldronBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.enums.BlockFace;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.DirectionTransformation;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
+import java.util.function.Function;
+
+import static net.minecraft.block.WallMountedBlock.FACE;
 
 public class AlchemistsCauldronBlock extends BlockWithEntity {
     public static final MapCodec<AlchemistsCauldronBlock> CODEC = createCodec(AlchemistsCauldronBlock::new);
@@ -27,6 +38,14 @@ public class AlchemistsCauldronBlock extends BlockWithEntity {
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new AlchemistsCauldronBlockEntity(pos, state);
+    }
+    private static final VoxelShape SHAPE = VoxelShapes.union(
+            Block.createColumnShape(16.0, 5.0, 16.0)
+    );
+
+    @Override
+    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 
     @Override

@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "category" : "misc",
+  "key" : {
+    "A" : "minecraft:blackstone",
+    "B" : "minecraft:iron_ingot"
+  },
+  "pattern" : [
+    "A A",
+    "AAA",
+    "B B"
+  ],
+  "result" : {
+    "count" : 1,
+    "id": "ambrosiac:alchemists_cauldron"
+  }
+}

@@ -1,5 +1,6 @@
 package ambrosiac.mod.widgets;
 
+import ambrosiac.mod.Ambrosiac;
 import ambrosiac.mod.blocks.entities.AlchemistsCauldronBlockEntity;
 import com.microsoft.aad.msal4j.IClientAssertion;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -8,9 +9,11 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class AlchemistsWandWidget extends ClickableWidget {
@@ -18,11 +21,10 @@ public class AlchemistsWandWidget extends ClickableWidget {
         super(x, y, width, height, message);
     }
 
+
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-        int startColor = 0xFF00FF00;
-        int endColor = 0xFF0000FF;
-        context.fillGradient(getX(), getY(), getX() + this.width, getY() + this.height, startColor, endColor);
+
     }
 
     @Override
