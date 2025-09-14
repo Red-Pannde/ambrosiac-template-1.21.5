@@ -21,7 +21,6 @@ import java.util.function.Function;
 
 public class SwissChardBlock extends CropBlock {
     public static final MapCodec<BeetrootsBlock> CODEC = createCodec(BeetrootsBlock::new);
-    public static IntProperty SWISS_CHARD_MAX_AGE = null;
     public static final IntProperty AGE;
     private static final VoxelShape[] SHAPES_BY_AGE;
 

@@ -5,10 +5,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.CrafterOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -16,7 +14,6 @@ import net.minecraft.world.World;
 public class AlchemistsCauldronScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final BlockPos blockPos;
-    private final BlockEntity alchemistsCauldronBlockEntity;
 
 
 
@@ -28,7 +25,6 @@ public class AlchemistsCauldronScreenHandler extends ScreenHandler {
         super(ModScreenHandler.ALCHEMISTS_CAULDRON_SCREEN_HANDLER, syncId);
         this.inventory = (Inventory) alchemistsCauldronBlockEntity;
         this.blockPos = pos;
-        this.alchemistsCauldronBlockEntity = alchemistsCauldronBlockEntity;
         // some inventories do custom logic when a player opens it.
         inventory.onOpen(playerInventory.player);
 

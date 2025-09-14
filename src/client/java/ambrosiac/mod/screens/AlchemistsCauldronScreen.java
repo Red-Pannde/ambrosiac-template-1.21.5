@@ -1,13 +1,11 @@
 package ambrosiac.mod.screens;
 
 import ambrosiac.mod.Ambrosiac;
-import ambrosiac.mod.blocks.entities.AlchemistsCauldronBlockEntity;
 import ambrosiac.mod.widgets.AlchemistsWandWidget;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.EnchantmentScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 

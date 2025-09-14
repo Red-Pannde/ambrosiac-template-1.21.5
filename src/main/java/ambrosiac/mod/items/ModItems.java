@@ -34,7 +34,7 @@ public class ModItems {
     public static final Item ATTRIBUTE_WAND = register("attribute_wand", AttributeWand::new, new AttributeWand.Settings().maxCount(1));
 
     public static final Item ACTIVATED_PEACE_LILY = register
-            ("activated_peace_lily.json", settings -> new BlockItem(ModBlocks.ACTIVATED_PEACE_LILY, settings),
+            ("activated_peace_lily", settings -> new BlockItem(ModBlocks.ACTIVATED_PEACE_LILY, settings),
                     new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
 
     public static final Item ACTIVATED_DAHLIA = register
