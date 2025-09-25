@@ -42,7 +42,7 @@ public class ActivatedPeaceLilyBlock extends Block implements FluidDrainable{
         }
     }
     public void createMud(World world, BlockPos pos) {
-        surroundingCheck(world, pos, 3, 0.3f, 10, (newPos, state) -> {
+        surroundingCheck(world, pos, 3, 1.0f, 10, (newPos, state) -> {
             if (state.isOf(Blocks.DIRT) && world.getBlockState(newPos.up()).isAir()) {
                 world.setBlockState(newPos, Blocks.MUD.getDefaultState());
                 return true;

@@ -65,7 +65,7 @@ public class ActivatedSwissChardBlock extends CropBlock{
     }
 
     public void fillCauldronWithSnow(World world, BlockPos pos) {
-        surroundingCheck(world, pos, 4, 0.3f, 10, (newPos) ->{
+        surroundingCheck(world, pos, 4, 1.0f, 10, (newPos) ->{
             BlockState state = world.getBlockState(newPos);
             if (state.getBlock() instanceof AbstractCauldronBlock cauldronBlock && world.getBlockState(newPos.up()).isAir()) {
 
@@ -79,7 +79,7 @@ public class ActivatedSwissChardBlock extends CropBlock{
     }
 
     public void freezeWaterIntoPackedIce(World world, BlockPos pos) {
-        surroundingCheck(world, pos, 2, 0.1f, 10, (newPos)-> {
+        surroundingCheck(world, pos, 2, 1.0f, 10, (newPos)-> {
             FluidState state = world.getFluidState(newPos);
             if (state.getFluid() instanceof WaterFluid.Still && world.getBlockState(newPos.up()).isAir()) {
 
