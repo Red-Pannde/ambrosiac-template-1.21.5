@@ -1,0 +1,11 @@
+{
+  "type": "ambrosiac:alchemists_cauldron_infusing",
+  "ingredients": [
+    "minecraft:nautilus_shell",
+    "ambrosiac:peace_lily"
+    ]
+  ],
+  "result": {
+    "id": "ambrosiac:activated_peace_lily"
+  }
+}

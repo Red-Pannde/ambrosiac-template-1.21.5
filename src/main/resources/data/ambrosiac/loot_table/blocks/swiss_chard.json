@@ -31,11 +31,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ambrosiac:swiss_chard_seeds"
+          "name": "ambrosiac:swiss_chard_leaf"
         }
       ],
-      "rolls": 1.0
+      "rolls": 2.0
     }
   ],
-  "random_sequence": "ambrosiac:items/swiss_chard_seeds"
+  "random_sequence": "ambrosiac:items/swiss_chard_leaf"
 }

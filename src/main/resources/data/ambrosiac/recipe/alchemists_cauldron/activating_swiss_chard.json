@@ -1,0 +1,10 @@
+{
+  "type" : "ambrosiac:alchemists_cauldron_infusing",
+  "ingredients" : [
+    "ambrosiac:swiss_chard_leaf",
+    "minecraft:amethyst_shard"
+  ],
+  "result" : {
+    "id" : "ambrosiac:activated_swiss_chard_leaf"
+  }
+}
