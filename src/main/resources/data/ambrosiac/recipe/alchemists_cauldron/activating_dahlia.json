@@ -2,11 +2,7 @@
   "type": "ambrosiac:alchemists_cauldron_infusing",
   "ingredients": [
     "ambrosiac:dahlia",
-    [
-      "minecraft:bone",
-      "minecraft:gunpowder",
-      "minecraft:spider_eye"
-    ]
+    "minecraft:nether_wart"
   ],
   "result": {
     "id": "ambrosiac:activated_dahlia"
