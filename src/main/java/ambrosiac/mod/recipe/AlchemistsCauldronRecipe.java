@@ -6,21 +6,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.recipe.*;
-import net.minecraft.recipe.book.RecipeBookCategory;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 @SuppressWarnings("deprecation")
 public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipeInput> {
 
-    private final List<Ingredient> ingredients;
+    private final DefaultedList<Ingredient> ingredients;
     private final ItemStack result;
-    @Nullable
-    private IngredientPlacement ingredientPlacement;
-    public AlchemistsCauldronRecipe(List<Ingredient> ingredients, ItemStack result) {
+    public AlchemistsCauldronRecipe(DefaultedList<Ingredient> ingredients, ItemStack result) {
         this.ingredients = ingredients;
         this.result = result;
     }
@@ -29,18 +28,31 @@ public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipe
 
     @Override
     public boolean matches(AlchemistsCauldronRecipeInput input, World world) {
+        if (world.isClient) {
+            return false;
+        }
         if (input.getStackCount() != this.ingredients.size()) {
             return false;
         } else {
-            return input.size() == 1 && this.ingredients.size() == 1
+            return input.getSize() == 1 && this.ingredients.size() == 1
                     ? this.ingredients.getFirst().test(input.getStackInSlot(0))
-                    : input.getRecipeMatcher().isCraftable(this, null);
+                    : input.getRecipeMatcher().match(this, null);
         }
     }
 
     @Override
     public ItemStack craft(AlchemistsCauldronRecipeInput input, RegistryWrapper.WrapperLookup registries) {
         return this.result.copy();
+    }
+
+    @Override
+    public boolean fits(int width, int height) {
+        return false;
+    }
+
+    @Override
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+        return null;
     }
 
     @Override
@@ -53,14 +65,8 @@ public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipe
         return ModRecipes.ALCHEMISTS_CAULDRON_RECIPE_TYPE;
     }
 
-    @Override
-    public IngredientPlacement getIngredientPlacement() {
-        if (this.ingredientPlacement == null) {
-            this.ingredientPlacement = IngredientPlacement.forShapeless(this.ingredients);
-        }
-        return this.ingredientPlacement;
-    }
-    public List<Ingredient> getIngredients() {
+
+    public DefaultedList<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -68,18 +74,14 @@ public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipe
         return result;
     }
 
-    @Override
-    public RecipeBookCategory getRecipeBookCategory() {
-        return null;
-    }
     public static class Serializer implements RecipeSerializer<AlchemistsCauldronRecipe> {
         private static final MapCodec<AlchemistsCauldronRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 instance -> instance.group(
-                                Ingredient.CODEC.listOf(1, 3).fieldOf("ingredients").forGetter(recipe -> recipe.ingredients),
+                                Ingredient.DISALLOW_EMPTY_CODEC.listOf(1, 3).fieldOf("ingredients").forGetter(recipe -> recipe.ingredients),
                                 ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.result)
 
                         )
-                        .apply(instance, AlchemistsCauldronRecipe::new)
+                        .apply(instance,  AlchemistsCauldronRecipe::new)
         );
         public static final PacketCodec<RegistryByteBuf, AlchemistsCauldronRecipe> PACKET_CODEC = PacketCodec.tuple(
                 Ingredient.PACKET_CODEC.collect(PacketCodecs.toList()),
@@ -87,7 +89,9 @@ public class AlchemistsCauldronRecipe implements Recipe<AlchemistsCauldronRecipe
                 ItemStack.PACKET_CODEC,
                 recipe -> recipe.result,
                 AlchemistsCauldronRecipe::new
+
         );
+
 
 
         @Override

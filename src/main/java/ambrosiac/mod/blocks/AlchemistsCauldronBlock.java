@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -33,7 +34,7 @@ public class AlchemistsCauldronBlock extends BlockWithEntity {
         return new AlchemistsCauldronBlockEntity(pos, state);
     }
     private static final VoxelShape SHAPE = VoxelShapes.union(
-            Block.createColumnShape(16.0, 5.0, 16.0)
+            Block.createCuboidShape(0.0, 5.0, 0.0, 16.0, 15.0, 16.0)
     );
 
     @Override
@@ -67,4 +68,12 @@ public class AlchemistsCauldronBlock extends BlockWithEntity {
         return true;
     }
 
+    @Override
+    protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        if (blockEntity instanceof AlchemistsCauldronBlockEntity) {
+            ItemScatterer.spawn(world, pos, (AlchemistsCauldronBlockEntity) blockEntity);
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
 }

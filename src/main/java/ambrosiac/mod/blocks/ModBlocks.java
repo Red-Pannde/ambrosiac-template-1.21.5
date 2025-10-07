@@ -18,16 +18,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
-import java.util.function.Function;
-
 public class ModBlocks {
     private ComponentMap.Builder components;
 
-    private static Block register(String name, Function<AbstractBlock.Settings, Block> blockFactory, AbstractBlock.Settings settings, boolean shouldRegisterItem) {
+    private static Block register( String name, Block block, boolean shouldRegisterItem) {
         // Create a registry key for the block
         RegistryKey<Block> blockKey = keyOfBlock(name);
         // Create the block instance
-        Block block = blockFactory.apply(settings.registryKey(blockKey));
 
         // Sometimes, you may not want to register an item for the block.
         // Eg: if it's a technical block like `minecraft:moving_piston` or `minecraft:end_gateway`
@@ -36,7 +33,7 @@ public class ModBlocks {
             // can be the same.
             RegistryKey<Item> itemKey = keyOfItem(name);
 
-            BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
+            BlockItem blockItem = new BlockItem(block, new Item.Settings());
             Registry.register(Registries.ITEM, itemKey, blockItem);
         }
 
@@ -53,44 +50,37 @@ public class ModBlocks {
 
     public static final Block DAHLIA = register(
             "dahlia",
-            Dahlia::new,
-            AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).noCollision().dynamicBounds(),
+            new DahliaBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).noCollision().dynamicBounds()),
             true
     );
     public static final Block ALCHEMISTS_CAULDRON = register(
             "alchemists_cauldron",
-            AlchemistsCauldronBlock::new,
-            AbstractBlock.Settings.create().sounds(BlockSoundGroup.IRON).dynamicBounds(),
+            new AlchemistsCauldronBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.METAL).dynamicBounds()),
             true
     );
     public static final Block SWISS_CHARD = register(
             "swiss_chard",
-            SwissChardBlock::new,
-            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque(),
+            new SwissChardBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).dynamicBounds().noCollision().nonOpaque()),
             false
     );
     public static final Block PEACE_LILY = register(
             "peace_lily",
-            PeaceLilyBlock::new,
-            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
+            new PeaceLilyBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).dynamicBounds().noCollision().nonOpaque().ticksRandomly()),
             true
     );
     public static final Block ACTIVATED_PEACE_LILY = register(
             "activated_peace_lily",
-            ActivatedPeaceLilyBlock::new,
-            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
+            new ActivatedPeaceLilyBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).dynamicBounds().noCollision().nonOpaque().ticksRandomly()),
             false
     );
     public static final Block ACTIVATED_DAHLIA = register(
             "activated_dahlia",
-            ActivatedDahliaBlock::new,
-            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
+            new ActivatedDahliaBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).dynamicBounds().noCollision().nonOpaque().ticksRandomly()),
             false
     );
     public static final Block ACTIVATED_SWISS_CHARD = register(
             "activated_swiss_chard",
-            ActivatedSwissChardBlock::new,
-            AbstractBlock.Settings.create().dynamicBounds().noCollision().nonOpaque().ticksRandomly(),
+            new ActivatedSwissChardBlock(AbstractBlock.Settings.create().sounds(BlockSoundGroup.AZALEA).dynamicBounds().noCollision().nonOpaque().ticksRandomly()),
             false
     );
 

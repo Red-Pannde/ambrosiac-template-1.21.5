@@ -14,21 +14,4 @@ public class AttributeWand extends Item {
         super(settings);
 
     }
-    @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        // Ensure we don't spawn the lightning only on the client.
-        // This is to prevent desync.
-        if (world.isClient) {
-            return ActionResult.PASS;
-        }
-
-        BlockPos frontOfPlayer = user.getBlockPos().offset(user.getHorizontalFacing(), 10);
-
-        // Spawn the lightning bolt.
-        LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-        lightningBolt.setPosition(frontOfPlayer.toCenterPos());
-        world.spawnEntity(lightningBolt);
-
-        return ActionResult.SUCCESS;
-    }
 }

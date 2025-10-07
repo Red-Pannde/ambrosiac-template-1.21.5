@@ -10,8 +10,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-public class Dahlia extends Block implements Fertilizable {
-    public Dahlia(Settings settings) {
+public class DahliaBlock extends Block implements Fertilizable {
+    public DahliaBlock(Settings settings) {
         super(settings);
     }
 

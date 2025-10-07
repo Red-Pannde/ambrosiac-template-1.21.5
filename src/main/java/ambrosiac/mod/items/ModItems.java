@@ -5,52 +5,49 @@ import ambrosiac.mod.blocks.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.function.Function;
-
 public class ModItems {
-    private static Item.Settings settings;
 
-    public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
+    public static Item register(String id, Item item) {
         // Create the item key.
-        RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Ambrosiac.MOD_ID, name));
+        Identifier itemID = Identifier.of(Ambrosiac.MOD_ID, id);
 
         // Create the item instance.
-        Item item = itemFactory.apply(settings.registryKey(itemKey));
+
 
         // Register the item.
-        Registry.register(Registries.ITEM, itemKey, item);
+        Item registeredItem = Registry.register(Registries.ITEM, itemID, item);
 
-        return item;
+        return registeredItem;
     }
 
-    public static final Item ATTRIBUTE_WAND = register("attribute_wand", AttributeWand::new, new AttributeWand.Settings().maxCount(1));
+    public static final Item ATTRIBUTE_WAND = register("attribute_wand", new AttributeWand(new Item.Settings().maxCount(1)));
 
     public static final Item ACTIVATED_PEACE_LILY = register
-            ("activated_peace_lily", settings -> new BlockItem(ModBlocks.ACTIVATED_PEACE_LILY, settings),
-                    new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+            ("activated_peace_lily", new BlockItem(ModBlocks.ACTIVATED_PEACE_LILY, new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static final Item ACTIVATED_DAHLIA = register
-            ("activated_dahlia", settings -> new BlockItem(ModBlocks.ACTIVATED_DAHLIA, settings),
-                    new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+            ("activated_dahlia",new BlockItem(ModBlocks.ACTIVATED_DAHLIA, new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
 
     public static final Item ACTIVATED_SWISS_CHARD_SEEDS = register
-            ("activated_swiss_chard_seeds", settings -> new BlockItem(ModBlocks.ACTIVATED_SWISS_CHARD, settings),
-                    new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+            ("activated_swiss_chard_seeds", new BlockItem(ModBlocks.ACTIVATED_SWISS_CHARD, new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)));
+
     public static final Item SWISS_CHARD_SEEDS = register
-            ("swiss_chard_seeds", settings -> new BlockItem(ModBlocks.SWISS_CHARD, settings),
-                    new Item.Settings());
+            ("swiss_chard_seeds", new BlockItem(ModBlocks.SWISS_CHARD, new Item.Settings()));
+
 
     public static final Item ACTIVATED_SWISS_CHARD_LEAF = register
-            ("activated_swiss_chard_leaf", Item::new, new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
-    public static final Item SWISS_CHARD_LEAF = register("swiss_chard_leaf", Item::new, new Item.Settings());
+            ("activated_swiss_chard_leaf", new Item( new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)));
+    public static final Item SWISS_CHARD_LEAF = register("swiss_chard_leaf", new Item(new Item.Settings()));
 
     public static void initialize() {
         Registry.register(Registries.ITEM_GROUP, Identifier.of(Ambrosiac.MOD_ID, "item_group"), AMBROSIAC_ITEM_GROUP);

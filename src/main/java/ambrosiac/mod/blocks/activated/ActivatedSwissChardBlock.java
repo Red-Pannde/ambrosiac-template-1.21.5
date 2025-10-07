@@ -28,7 +28,8 @@ public class ActivatedSwissChardBlock extends CropBlock{
 
     static {
         AGE = Properties.AGE_2;
-        SHAPES_BY_AGE = Block.createShapeArray(2, (age) -> Block.createColumnShape((double) 16.0F, (double) 0.0F, (double) (2 + age * 2)));
+        SHAPES_BY_AGE = new VoxelShape[]{Block.createCuboidShape((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)2.0F, (double)16.0F), Block.createCuboidShape((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)4.0F, (double)16.0F), Block.createCuboidShape((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)6.0F, (double)16.0F), Block.createCuboidShape((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)8.0F, (double)16.0F)};
+
 
 
     }

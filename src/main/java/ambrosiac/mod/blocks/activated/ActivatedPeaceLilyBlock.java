@@ -1,7 +1,10 @@
 package ambrosiac.mod.blocks.activated;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FluidDrainable;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -65,7 +68,7 @@ public class ActivatedPeaceLilyBlock extends Block implements FluidDrainable{
 
 
     @Override
-    public ItemStack tryDrainFluid(@Nullable LivingEntity drainer, WorldAccess world, BlockPos pos, BlockState state) {
+    public ItemStack tryDrainFluid(@Nullable PlayerEntity player, WorldAccess world, BlockPos pos, BlockState state) {
         return new ItemStack(Items.WATER_BUCKET);
 
     }

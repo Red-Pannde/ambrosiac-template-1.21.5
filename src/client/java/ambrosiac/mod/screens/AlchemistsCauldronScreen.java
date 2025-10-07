@@ -19,10 +19,10 @@ public class AlchemistsCauldronScreen extends HandledScreen<AlchemistsCauldronSc
 
     @Override
     protected void drawBackground(DrawContext context, float deltaTicks, int mouseX, int mouseY) {
-        context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 176, 166);
+        context.drawTexture( TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 176, 166);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        context.drawTexture(RenderLayer::getGuiTextured, INFUSING_BUTTON, x + 149, y + 58, 0, 0, 22, 20, 22, 20);
+        context.drawTexture(INFUSING_BUTTON, x + 149, y + 58, 0, 0, 22, 20, 22, 20);
 
     }
 

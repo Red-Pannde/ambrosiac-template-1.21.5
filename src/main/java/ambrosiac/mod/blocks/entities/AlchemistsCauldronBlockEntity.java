@@ -88,12 +88,6 @@ public class AlchemistsCauldronBlockEntity extends BlockEntity implements Implem
     }
 
     @Override
-    public void onBlockReplaced(BlockPos pos, BlockState oldState) {
-        ItemScatterer.spawn(world, pos, this);
-        super.onBlockReplaced(pos, oldState);
-    }
-
-    @Override
     public BlockPos getScreenOpeningData(ServerPlayerEntity player) {
         return this.pos;
     }
